@@ -52,3 +52,7 @@ class Solitaire:
 
         self.remove_all_possible()
         return len(self.face_up) == 0
+    
+if __name__ == "__main__":
+    game = Solitaire()
+    print("win?", game.playGame())
