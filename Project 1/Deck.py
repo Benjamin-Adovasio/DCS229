@@ -18,3 +18,10 @@ class Deck:
             j = random.randomrange(i, len(self._cards))
             self._cards[i], self._cards[j] = self._cards[j], self._cards[i]
         self._next_card = 0    
+    
+    def deal(self):
+        if self._next_card >= len(self._cards):
+            return None
+        card = self._cards[self._next_card]
+        self._next_card += 1
+        return card
