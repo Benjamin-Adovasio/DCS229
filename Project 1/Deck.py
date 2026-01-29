@@ -25,3 +25,6 @@ class Deck:
         card = self._cards[self._next_card]
         self._next_card += 1
         return card
+    
+    def number_of_cards(self) -> int:
+        return len(self._cards) - self._next_card
