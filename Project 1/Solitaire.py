@@ -39,3 +39,16 @@ class Solitaire:
             removed = self.remove_four_same_suit()
             if not removed:
                 removed = self.remove_inner_two()
+
+    def playGame(self) -> bool:
+        self.deck.shuffle()
+        self.face_up = []
+
+        self.deal_until_four()
+
+        while self.deck.number_of_cards() > 0:
+            self.remove_all_possible()
+            self.face_up.append(self.deck.deal())
+
+        self.remove_all_possible()
+        return len(self.face_up) == 0
