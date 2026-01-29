@@ -29,9 +29,9 @@ class Deck:
     def number_of_cards(self) -> int:
         return len(self._cards) - self._next_card
     
-    if __name__ == "__main__":
-        deck = Deck()
-        deck.shuffle()
-        for _ in range(5):
-            print(deck.deal())
-        print("Cards left:", deck.number_of_cards())
+if __name__ == "__main__":
+    deck = Deck()
+    deck.shuffle()
+    for _ in range(5):
+        print(deck.deal())
+    print("Cards left:", deck.number_of_cards())
