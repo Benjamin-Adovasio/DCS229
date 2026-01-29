@@ -1,3 +1,6 @@
+"""
+This is the main file that should be called to run the simulation.
+"""
 from Solitaire import Solitaire
 
 
