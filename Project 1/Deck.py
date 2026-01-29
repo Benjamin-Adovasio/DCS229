@@ -28,3 +28,23 @@ class Deck:
     
     def number_of_cards(self) -> int:
         return len(self._cards) - self._next_card
+    
+    if __name__ == "__main__":
+        deck = Deck()
+        print("Initial deck:")
+        for card in deck._cards:
+            print(card)
+        
+        deck.shuffle()
+        print("\nShuffled deck:")
+        for card in deck._cards:
+            print(card)
+        
+        print("\nDealing cards:")
+        while True:
+            card = deck.deal()
+            if card is None:
+                break
+            print(card)
+        
+        print(f"\nNumber of cards left in deck: {deck.number_of_cards()}")
