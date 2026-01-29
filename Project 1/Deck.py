@@ -13,3 +13,8 @@ class Deck:
             for value in values:
                 self._cards.append(Card(suit, value))
     
+    def shuffle(self):
+        for i in range(len(self._cards)):
+            j = random.randomrange(i, len(self._cards))
+            self._cards[i], self._cards[j] = self._cards[j], self._cards[i]
+        self._next_card = 0    
