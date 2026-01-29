@@ -31,20 +31,7 @@ class Deck:
     
     if __name__ == "__main__":
         deck = Deck()
-        print("Initial deck:")
-        for card in deck._cards:
-            print(card)
-        
         deck.shuffle()
-        print("\nShuffled deck:")
-        for card in deck._cards:
-            print(card)
-        
-        print("\nDealing cards:")
-        while True:
-            card = deck.deal()
-            if card is None:
-                break
-            print(card)
-        
-        print(f"\nNumber of cards left in deck: {deck.number_of_cards()}")
+        for _ in range(5):
+            print(deck.deal())
+        print("Cards left:", deck.number_of_cards())
