@@ -22,4 +22,20 @@ class Solitaire:
         
         return False
     
-    
+    def remove_inner_two(self) -> bool:
+        if len(self.face_up) < 4:
+            return False
+
+        last_four = self.face_up[-4:]
+        if last_four[0].get_suit() == last_four[3].get_suit():
+            del self.face_up[-3:-1]
+            return True
+
+        return False
+
+    def remove_all_possible(self):
+        removed = True
+        while removed and len(self.face_up) >= 4:
+            removed = self.remove_four_same_suit()
+            if not removed:
+                removed = self.remove_inner_two()
