@@ -22,10 +22,10 @@ class Card:
     #Returns a string representation of the card in the format "Value of Suit".
 
     def __add__(self, other) -> int:
+            #Adding 2 cards together
         if isinstance(other, Card):
             return self.value + other.value
         elif isinstance(other, int):
+            #allows adding a card to an int
             return self.value + other
-        else:
-            return NotImplemented
     #Added for project 2: Created an "__add__" meathod to allow adding Cards together.
