@@ -20,3 +20,12 @@ class Card:
         return f"{self._value} of {self._suit}"
     
     #Returns a string representation of the card in the format "Value of Suit".
+
+    def __add__(self, other) -> int:
+        if isinstance(other, Card):
+            return self.value + other.value
+        elif isinstance(other, int):
+            return self.value + other
+        else:
+            return NotImplemented
+    #Added for project 2: Created an "__add__" meathod to allow adding Cards together.
