@@ -1,5 +1,6 @@
 import random
 from Card import Card
+
 """
 Defines the deck of cards used in the Solitaire game. Contains methods to shuffle the deck, deal cards, and check the number of remaining cards.
 
