@@ -13,15 +13,23 @@ import random #to generate the 100 random values
 import time #for part 4, to calculae total time
 
 #### Write your class here
-def generate_random_list(n):
-    data = []
-    for _ in range(n):
-        data.append(random.randint(0, 1000))
+class Search:
 
-    if 42 not in data:
-        data[random.randint(0, n - 1)] = 42
+    """
+    This function generates the list of random integers.
+    """
+    def generate_random_list(self, n):
+        data = []
+        for _ in range(n):
+            data.append(random.randint(0, 1000))
 
-    return data
+        if 42 not in data:
+            data[random.randint(0, n - 1)] = 42
+
+        return data
+    
+
+    
 
 
 ### write your tests in main function
