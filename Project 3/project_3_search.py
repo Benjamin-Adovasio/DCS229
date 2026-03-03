@@ -12,7 +12,7 @@ from __future__ import annotations
 import random #to generate the 100 random values
 import time #for part 4, to calculae total time
 
-#### Write your class here
+
 class Search:
 
     """
@@ -28,7 +28,28 @@ class Search:
 
         return data
     
+    """
+    This funciton preforms a search on the list for the target value, and prints the number of checks it took to find the target.
+    """
+    def linear_search_print(self, arr, target):
+        checks = 0
+        for value in arr:
+            if value == target:
+                print("Unsuccessful checks:", checks)
+                return checks
+            checks += 1
 
+        print("Not found.")
+        return checks
+    
+
+    def linear_search_count(self, arr, target):
+        checks = 0
+        for value in arr:
+            checks += 1
+            if value == target:
+                return checks
+        return checks
     
 
 
