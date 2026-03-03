@@ -42,7 +42,9 @@ class Search:
         print("Not found.")
         return checks
     
-
+    """
+    This function pre
+    """
     def linear_search_count(self, arr, target):
         checks = 0
         for value in arr:
@@ -52,7 +54,20 @@ class Search:
         return checks
     
 
+    def binary_search_recursive(self, arr, target, low, high):
+        if low > high:
+            return -1
 
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            return self.binary_search_recursive(arr, target, mid + 1, high)
+        else:
+            return self.binary_search_recursive(arr, target, low, mid - 1)
+        
+        
 ### write your tests in main function
 def main():
     pass
