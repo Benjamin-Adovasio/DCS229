@@ -6,8 +6,6 @@
 # https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/search/
 # 
 ##########################################
-# import statement to support more type hints
-from __future__ import annotations
 
 import random #to generate the 100 random values
 import time #for part 4, to calculae total time
@@ -19,14 +17,14 @@ class Search:
     This function generates the list of random integers.
     """
     def generate_random_list(self, n):
-        data = []
+        array = []
         for _ in range(n):
-            data.append(random.randint(0, 1000))
+            array.append(random.randint(0, 1000))
 
-        if 42 not in data:
-            data[random.randint(0, n - 1)] = 42
+        # if 42 not in data:
+        #     data[random.randint(0, n - 1)] = 42
 
-        return data
+        return array
     
     """
     This funciton preforms a search on the list for the target value, and prints the number of checks it took to find the target.
@@ -36,14 +34,14 @@ class Search:
         for value in arr:
             if value == target:
                 print("Unsuccessful checks:", checks)
-                return checks
+
             checks += 1
 
         print("Not found.")
         return checks
     
     """
-    This function pre
+    This function 
     """
     def linear_search_count(self, arr, target):
         checks = 0
@@ -97,7 +95,35 @@ def main():
     """
     Part 4: With your implementations of Linear and Binary Search, write some tests to generate a number of random queries. Calculate the total time to conduct n/2 queries on a randomly generated dataset. Be sure to include the sorting time for your Binary Search database before calculating the total time for all queries. Compare your result to the Linear Search total query time. Next, repeat this process for n, 2*n, and 4*n queries. At what number of queries does Sorting + Binary Search start to show an advantage over Linear Search?
     """
-    
+    n = 1000
+    arr = search.generate_random_list(n) #generate the list of n random integers
+
+    for multiplier in [0.5, 1, 2, 4]:
+        query_count = int(n * multiplier)
+        queries = []
+
+        for _ in range(query_count):
+            queries.append(random.choice(base_array))
+
+        # Linear timing
+        start = time.perf_counter()
+        for q in queries:
+            search.linear_search_count(base_array, q)
+        end = time.perf_counter()
+        linear_time = end - start
+
+        # Sorting + Binary timing
+        start = time.perf_counter()
+        sorted_arr = sorted(base_array)
+        for q in queries:
+            search.binary_search_recursive(sorted_arr, q, 0, len(sorted_arr) - 1)
+        end = time.perf_counter()
+        binary_time = end - start
+
+        print("\nQueries:", query_count)
+        print("Linear time:", linear_time)
+        print("Sorting + Binary time:", binary_time) 
+
 #  only execute when you run this file directily
 if __name__ == "__main__":
     main()
