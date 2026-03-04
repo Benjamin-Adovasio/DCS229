@@ -103,18 +103,18 @@ def main():
         queries = []
 
         for _ in range(query_count):
-            queries.append(random.choice(base_array))
+            queries.append(random.choice(arr))
 
         # Linear timing
         start = time.perf_counter()
         for q in queries:
-            search.linear_search_count(base_array, q)
+            search.linear_search_count(arr, q)
         end = time.perf_counter()
         linear_time = end - start
 
         # Sorting + Binary timing
         start = time.perf_counter()
-        sorted_arr = sorted(base_array)
+        sorted_arr = sorted(arr)
         for q in queries:
             search.binary_search_recursive(sorted_arr, q, 0, len(sorted_arr) - 1)
         end = time.perf_counter()
