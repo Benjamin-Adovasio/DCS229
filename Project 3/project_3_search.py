@@ -21,8 +21,9 @@ class Search:
         for _ in range(n):
             array.append(random.randint(0, 1000))
 
-        # if 42 not in data:
-        #     data[random.randint(0, n - 1)] = 42
+        #I added this for testing purposes, to make sure 42 was in the list
+        if 42 not in array:
+            array[random.randint(0, n - 1)] = 42
 
         return array
     
@@ -34,7 +35,7 @@ class Search:
         for value in arr:
             if value == target:
                 print("Unsuccessful checks:", checks)
-
+                return checks
             checks += 1
 
         print("Not found.")
@@ -98,8 +99,8 @@ def main():
     n = 1000
     arr = search.generate_random_list(n) #generate the list of n random integers
 
-    for multiplier in [0.5, 1, 2, 4]:
-        query_count = int(n * multiplier)
+    for multiplier in [0.5, 1, 2, 4]: #I used a "multiplier" to avoid rewriting the code for each query
+        query_count = int(n * multiplier) 
         queries = []
 
         for _ in range(query_count):
