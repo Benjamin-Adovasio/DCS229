@@ -10,58 +10,60 @@
 import random #to generate the 100 random values
 import time #for part 4, to calculae total time
 
-
+#I decided to put all 4 functions into one class to keep it organized 
 class Search:
 
     """
     This function generates the list of random integers.
     """
     def generate_random_list(self, n):
-        array = []
-        for _ in range(n):
-            array.append(random.randint(0, 1000))
+        array = [] #array starts as blank
+        for element in range(n): #will run n times
+            array.append(random.randint(0, 1000)) #random integer between 0-1000
 
         #I added this for testing purposes, to make sure 42 was in the list
-        if 42 not in array:
-            array[random.randint(0, n - 1)] = 42
+        #if 42 not in array:
+        #    array[random.randint(0, n - 1)] = 42
 
         return array
     
     """
     This funciton preforms a search on the list for the target value, and prints the number of checks it took to find the target.
     """
-    def linear_search_print(self, arr, target):
-        checks = 0
+    def linear_search_print(self, arr, target): 
+        checks = 0 #check count starts at 0
         for value in arr:
             if value == target:
-                print("Unsuccessful checks:", checks)
+                print("Unsuccessful checks:", checks) 
                 return checks
-            checks += 1
+            checks += 1 #adds 1 to the number of checks
 
-        print("Not found.")
+        print("Not found.") #Only gets printed if the code doesnt return earlier
         return checks
     
     """
-    This function 
+    This function is the same as the previous one, but instead of printing the number of checks, it returns the number of checks. 
     """
     def linear_search_count(self, arr, target):
         checks = 0
         for value in arr:
             checks += 1
             if value == target:
-                return checks
+                return checks 
         return checks
     
-
+    """
+    This function uses recursive searching.
+    """
     def binary_search_recursive(self, arr, target, low, high):
         if low > high:
-            return -1
+            return -1 #base case: if low is greater than high, the target is not found
 
-        mid = (low + high) // 2
+        mid = (low + high) // 2 #finds the middle
 
-        if arr[mid] == target:
-            return mid
-        elif arr[mid] < target:
+        if arr[mid] == target: #stops if target found
+            return mid #in this case mid would be the index of the target
+        elif arr[mid] < target: #either the left or right half of array is then searched
             return self.binary_search_recursive(arr, target, mid + 1, high)
         else:
             return self.binary_search_recursive(arr, target, low, mid - 1)
@@ -70,13 +72,13 @@ def main():
     search = Search() #search object to call Search() class
 
     """
-    Part 1: Implement a Linear Search in your language of choice [Python]. Use the following plan to test your implementation on an array [Python List] of 100 randomly generated values (in random order). Randomly generate 100 values, and use Linear Search to find the value 42. Have your search print the number of unsuccessful checks before finding the value 42 (or reporting not found). 
+    Part 1: Linear search on 100 integers
     """
     arr = search.generate_random_list(100) #generate the list of 100 random integers
     search.linear_search_print(arr, 42) #search for the value 42 using linear search and print the number of checks it took to find 42
 
     """
-    Part 2: Take the search function from exercise 1, and modify it to count and return the number of checks Linear Search takes to find the value 42 in a random array. Write a loop to repeat this experiment 100 times, and average the number of checks it takes to find a specific value. What is that number close to? How does it change if you increase the number of tests from 100 to 1,000?
+    Part 2: Same as 1, but return number of checks
     """
     total = 0
     tests = 100
@@ -87,14 +89,17 @@ def main():
     print("Average number of checks for 100 tests:", total / tests) #print the average number of checks it took to find 42 for 100 tests
 
     """
-    Part 3: The reasoning used to determine the time complexity of Binary Search closely resembles similar arguments from chapter 2 on recursion. Implement Binary Search as a recursive algorithm by adding extra parameters for the high and low variables. Make sure your function is tail-recursive to facilitate tail-call optimization.
+    Part 3: Uses the recursive search
     """
     arr = sorted(search.generate_random_list(100)) #generate the list of 100 random integers and sort it for binary search
     index = search.binary_search_recursive(arr, 42, 0, len(arr) - 1) #search for the value 42 using binary search and get the index of 42
     print("Index of 42 in sorted array:", index) #print the index of 42 in the sorted array
 
     """
-    Part 4: With your implementations of Linear and Binary Search, write some tests to generate a number of random queries. Calculate the total time to conduct n/2 queries on a randomly generated dataset. Be sure to include the sorting time for your Binary Search database before calculating the total time for all queries. Compare your result to the Linear Search total query time. Next, repeat this process for n, 2*n, and 4*n queries. At what number of queries does Sorting + Binary Search start to show an advantage over Linear Search?
+    Part 4: Tests
+
+    At what number of queries does Sorting + Binary Search start to show an advantage over Linear Search?:
+    Sorting + binary search shows an advantage at around 500 queries
     """
     n = 1000
     arr = search.generate_random_list(n) #generate the list of n random integers
