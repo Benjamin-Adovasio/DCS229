@@ -191,6 +191,30 @@ def main():
     assert len(ll) == 2
 
     # ADD MORE TESTS
-    
+
+    # test inserting multiple at head
+    ll.insert_head(1)
+    ll.insert_head(2)
+    ll.insert_head(3)
+    assert len(ll) == 5
+    print(ll)
+
+    # test removing head repeatedly
+    assert ll.remove_head() == 3
+    assert ll.remove_head() == 2
+    assert len(ll) == 3
+
+    # test removing tail until empty
+    assert ll.remove_tail() == 7
+    assert ll.remove_tail() == 6
+    assert ll.remove_tail() == 1
+    assert len(ll) == 0
+
+    # test removing from empty again
+    try:
+        ll.remove_tail()
+    except EmptyError:
+        print("Correctly caught empty list error")
+        
 if __name__ == "__main__":
     main()
