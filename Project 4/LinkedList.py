@@ -128,9 +128,22 @@ class LinkedList[T]:
     
         ## YOUR CODE HERE ##
 
-        pass
+        if self.head.get_next() is None:
+            removed_data = self.head.get_data()
+            self.head = None
+            self.size -= 1
+            return removed_data
 
- 
+        current = self.head
+
+        while current.get_next().get_next() is not None:
+            current = current.get_next()
+
+        removed_data = current.get_next().get_data()
+        current.set_next(None)
+
+        self.size -= 1
+        return removed_data
 
 
     def __str__(self):
