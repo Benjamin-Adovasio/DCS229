@@ -3,7 +3,7 @@
 # Linked List implementation
 # Date: 03/13/2026
 # Name: Benjamin Adovasio
-# Resources Used:
+# Resources Used: https://docs.python.org/3/tutorial/datastructures.html
 ##########################################
 from __future__ import annotations
 
