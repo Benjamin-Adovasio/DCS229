@@ -60,10 +60,10 @@ class LinkedList[T]:
 
         ## YOUR CODE HERE ##
        
-            new_node = Node(value)
-            new_node.set_next(self.head)
-            self.head = new_node
-            self.size += 1
+        new_node = Node(value)
+        new_node.set_next(self.head)
+        self.head = new_node
+        self.size += 1
 
     def insert_tail(self, value: T) -> None:
         ''' adds the given T-type data value to the end of the linked list
