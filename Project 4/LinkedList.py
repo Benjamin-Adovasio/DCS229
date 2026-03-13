@@ -139,7 +139,7 @@ class LinkedList[T]:
             self.size -= 1 #decrease the size of the list by 1
             return removed_data #return the data from the removed node
 
-        current = self.head
+        current = self.head #start from the head node
 
         while current.get_next().get_next() is not None: #while the next node's next pointer is not None, keep going
             current = current.get_next() #move current to the next node
