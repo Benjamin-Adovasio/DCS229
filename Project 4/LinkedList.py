@@ -60,10 +60,10 @@ class LinkedList[T]:
 
         ## YOUR CODE HERE ##
        
-        new_node = Node(value)
-        new_node.set_next(self.head)
-        self.head = new_node
-        self.size += 1
+        new_node = Node(value) # create a new node new_node
+        new_node.set_next(self.head) # set the new node's next pointer to the current head of the list
+        self.head = new_node # update the head pointer to point to the new node
+        self.size += 1 # increase the size of the list by 1
 
     def insert_tail(self, value: T) -> None:
         ''' adds the given T-type data value to the end of the linked list
@@ -74,18 +74,20 @@ class LinkedList[T]:
         '''
 
         ## YOUR CODE HERE ##
-
-        new_node = Node(value)
+        """
+        The insert_tail method creates a new node with the given value and adds it to the end of the linked list. If the list is empty, it sets the head pointer to the new node. Otherwise, it traverses the list until it reaches the last node and updates its next pointer to point to the new node. Finally, it increments the size of the list by 1.
+        """
+        new_node = Node(value) # create a new node new_node
 
         if self.head is None:
-            self.head = new_node
-        else:
-            current = self.head
+            self.head = new_node #if the list is empty, set the head pointer to the new node
+        else: #else go through list until we reach end and set the last node's next pointer to the new node
+            current = self.head 
             while current.get_next() is not None:
                 current = current.get_next()
             current.set_next(new_node)
 
-        self.size += 1
+        self.size += 1 #increase the size of the list by 1
 
     def remove_head(self) -> T:
         ''' removes the first Node in the linked list, returning the data item
@@ -106,11 +108,11 @@ class LinkedList[T]:
 
         ## YOUR CODE HERE ##
 
-        removed_node = self.head
-        self.head = self.head.get_next()
+        removed_node = self.head # store the current head node in a variable removed_node
+        self.head = self.head.get_next() # update the head pointer to point to the next node in the list (which could be None if there was only one node)
 
-        self.size -= 1
-        return removed_node.get_data()        
+        self.size -= 1 #decrease the size of the list by 1
+        return removed_node.get_data() # return the data item from the removed node       
 
     def remove_tail(self) -> T:
         ''' removes the last Node in the linked list, returning the data item
@@ -128,22 +130,25 @@ class LinkedList[T]:
     
         ## YOUR CODE HERE ##
 
-        if self.head.get_next() is None:
-            removed_data = self.head.get_data()
-            self.head = None
-            self.size -= 1
-            return removed_data
+        """
+        If the list has only one node, we can simply remove the head and return its data. Otherwise, we need to traverse the list to find the second-to-last node, update its next pointer to None, and return the data from the last node.
+        """
+        if self.head.get_next() is None: #continue if the list has only one node
+            removed_data = self.head.get_data() #return the data
+            self.head = None #set the head to none
+            self.size -= 1 #decrease the size of the list by 1
+            return removed_data #return the data from the removed node
 
         current = self.head
 
-        while current.get_next().get_next() is not None:
-            current = current.get_next()
+        while current.get_next().get_next() is not None: #while the next node's next pointer is not None, keep going
+            current = current.get_next() #move current to the next node
 
         removed_data = current.get_next().get_data()
         current.set_next(None)
 
-        self.size -= 1
-        return removed_data
+        self.size -= 1 #decrease the size of the list by 1
+        return removed_data #return the data from the removed node
 
 
     def __str__(self):
