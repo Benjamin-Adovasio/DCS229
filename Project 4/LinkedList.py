@@ -75,7 +75,17 @@ class LinkedList[T]:
 
         ## YOUR CODE HERE ##
 
-        pass
+        new_node = Node(value)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.get_next() is not None:
+                current = current.get_next()
+            current.set_next(new_node)
+
+        self.size += 1
 
     def remove_head(self) -> T:
         ''' removes the first Node in the linked list, returning the data item
