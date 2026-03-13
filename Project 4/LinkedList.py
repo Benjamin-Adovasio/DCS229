@@ -106,7 +106,11 @@ class LinkedList[T]:
 
         ## YOUR CODE HERE ##
 
-        pass
+        removed_node = self.head
+        self.head = self.head.get_next()
+
+        self.size -= 1
+        return removed_node.get_data()        
 
     def remove_tail(self) -> T:
         ''' removes the last Node in the linked list, returning the data item
