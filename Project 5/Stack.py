@@ -95,6 +95,19 @@ def main():
     assert s.pop() == 10
     assert s.is_empty() is True
 
+    try:
+        s.pop()
+        assert False
+    except EmptyError:
+        pass
+
+    try:
+        s.peek()
+        assert False
+    except EmptyError:
+        pass
+
+    print("All Stack tests passed.") #only runs if all previous tests pass
 
 if __name__ == "__main__":
     main()
