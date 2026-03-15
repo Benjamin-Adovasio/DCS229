@@ -75,8 +75,26 @@ class Stack[T]:
         return str(self._data)
 
 def main():
-    # add your tests here!
-    pass
+    '''test functions'''
+    s = Stack() # I added this so stack doesnt need to be reinitialized for each test
+
+    assert len(s) == 0
+    assert s.is_empty() is True
+
+    s.push(10)
+    assert len(s) == 1
+    assert s.peek() == 10
+
+    s.push(20)
+    s.push(30)
+    assert len(s) == 3
+    assert s.peek() == 30
+
+    assert s.pop() == 30
+    assert s.pop() == 20
+    assert s.pop() == 10
+    assert s.is_empty() is True
+
 
 if __name__ == "__main__":
     main()
