@@ -67,7 +67,7 @@ class Stack[T]:
         Returns:
             True if the stack is empty, False otherwise
         '''
-        pass
+        return len(self._data) == 0
 
     def __str__(self) -> str:
         ''' returns an str implementation of the Stack '''
