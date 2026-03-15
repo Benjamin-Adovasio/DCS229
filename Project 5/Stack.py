@@ -47,7 +47,9 @@ class Stack[T]:
         Raises:
             EmptyError exception if the stack is empty
         '''
-        pass
+        if self.is_empty():
+            raise EmptyError("Stack is empty")
+        return self._data.remove_head()
 
     def peek(self) -> T:
         ''' returns the topmost element from the stack without modifying the stack
@@ -56,7 +58,9 @@ class Stack[T]:
         Raises:
             EmptyError exception if the stack is empty
         '''
-        pass
+        if self.is_empty():
+            raise EmptyError("Stack is empty")
+        return self._data.get_head()
 
     def is_empty(self) -> bool:
         ''' indicates whether the stack is empty
