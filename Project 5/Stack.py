@@ -38,7 +38,7 @@ class Stack[T]:
         Returns:
             None
         '''
-        pass
+        self._data.insert_head(item)
 
     def pop(self) -> T:
         ''' removes the topmost element from the stack and returns that element
