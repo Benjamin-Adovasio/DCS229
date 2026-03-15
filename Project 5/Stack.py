@@ -19,7 +19,9 @@ class Stack[T]:
 
     def __init__(self):
        
-        pass
+        ''' initializes an empty stack '''
+        self._data = LinkedList()
+        
     def __len__(self) -> int:
         ''' allows the len function to be called using an ArrayStack object, e.g.,
                stack = ArrayStack()
