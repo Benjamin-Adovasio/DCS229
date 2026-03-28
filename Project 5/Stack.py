@@ -3,7 +3,7 @@
 # Stack data structure implemented with Linked List
 # Date:
 # Name:
-# Resources Used: LinkedList.py from Project 4
+# Resources Used: LinkedList.py from Project 4. I also worked with Pat Cohen on the project.
 ##########################################
 
 

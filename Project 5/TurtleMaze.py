@@ -3,7 +3,7 @@
 # Utility file with the TurtleMaze class.
 # Date: March 13, 2026
 # Name: Prof. Andy Ricci
-# Resources Used: https://runestone.academy/ns/books/published/pythonds/Recursion/ExploringaMaze.html
+# Resources Used: https://runestone.academy/ns/books/published/pythonds/Recursion/ExploringaMaze.html. I also worked with Pat Cohen on the project.
 ##########################################
 
 from __future__ import annotations
