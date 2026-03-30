@@ -51,3 +51,6 @@ def main():
 
     neighbors = get_neighbors(maze, start)
     print("Neighbors of start:", neighbors)
+
+if __name__ == "__main__":
+    main()
