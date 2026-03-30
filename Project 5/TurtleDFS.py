@@ -42,3 +42,12 @@ def get_neighbors(maze: TurtleMaze, cell: Cell) -> list[Cell]:
             neighbors.append(west)
 
     return neighbors
+
+def main():
+    maze = TurtleMaze('maze_1.txt')
+
+    start = maze.getStart()
+    print("Start cell:", start)
+
+    neighbors = get_neighbors(maze, start)
+    print("Neighbors of start:", neighbors)
