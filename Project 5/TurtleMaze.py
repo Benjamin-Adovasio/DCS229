@@ -235,16 +235,27 @@ class TurtleMaze:
 
 def main():
 
-    maze = TurtleMaze('maze_3.txt')
+    maze = TurtleMaze('maze_2.txt')
     maze.drawMaze()
-    # print("row at index 4", maze[4])
-    # print("cell at index 4, 4", maze[4][4])
 
+    # print the contents of the top-right corner
+    top_right = maze[0][len(maze[0]) - 1]
+    print("Top-right corner:", top_right)
+
+    # print the start and goal cells
+    print("Start cell:", maze.getStart())
+    print("Goal cell:", maze.getGoal())
+
+    # start at S
     maze.updatePosition(maze.getStart())
-    print(maze.getStart())
+
+    # move only to neighboring cells so the turtle stays on the path
+    maze.updatePosition(maze[9][15], Contents.TRIED)         # down 1
+    maze.updatePosition(maze[9][16], Contents.PART_OF_PATH)  # right 1
+    maze.updatePosition(maze[9][17], Contents.PART_OF_PATH)  # right 1
+    maze.updatePosition(maze[8][17], Contents.DEAD_END)      # up 1
 
     maze.t.screen.mainloop()
-
 
 if __name__ == "__main__":
     main()
