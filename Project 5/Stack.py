@@ -1,30 +1,33 @@
 ######################################
 # DCS 229 -- Stack
 # Stack data structure implemented with Linked List
-# Date:
-# Name:
+# Date: 03/29/2026
+# Name: Benjamin Adovasio
 # Resources Used: LinkedList.py from Project 4. I also worked with Pat Cohen on the project.
 ##########################################
 
 
 from LinkedList import *
+
+
 class EmptyError(Exception):
     ''' class extending Exception to better document stack errors '''
     def __init__(self, message: str):
+        super().__init__(message)
         self.message = message
+
 
 class Stack[T]:
     ''' class to implement a stack ADT using our LinkedList class'''
 
 
     def __init__(self):
-       
         ''' initializes an empty stack '''
         self._data = LinkedList()
 
     def __len__(self) -> int:
-        ''' allows the len function to be called using an ArrayStack object, e.g.,
-               stack = ArrayStack()
+        ''' allows the len function to be called using a Stack object, e.g.,
+               stack = Stack()
                print(len(stack))
         Returns:
             number of elements in the stack, as an integer
@@ -76,7 +79,7 @@ class Stack[T]:
 
 def main():
     '''test functions'''
-    s = Stack() # I added this so stack doesnt need to be reinitialized for each test
+    s = Stack() #I added this so stack doesnt need to be reinitalized for each test
 
     assert len(s) == 0
     assert s.is_empty() is True
@@ -107,8 +110,7 @@ def main():
     except EmptyError:
         pass
 
-    print("All Stack tests passed.") #only runs if all previous tests pass
+    print("All Stack tests passed.") #Only runs if all previous tests pass
 
 if __name__ == "__main__":
     main()
-
