@@ -43,6 +43,39 @@ def get_neighbors(maze: TurtleMaze, cell: Cell) -> list[Cell]:
 
     return neighbors
 
+def dfs(maze: TurtleMaze) -> bool:
+    '''runs a non-recursive depth first search on the maze
+    Returns:
+        True if the goal is found, False otherwise
+    '''
+
+    stack = Stack()
+    start = maze.getStart()
+    visited = set()
+
+    stack.push(start)
+    visited.add((start.y, start.x))
+    maze.updatePosition(start)
+
+    while not stack.is_empty():
+        current = stack.pop()
+
+        # move turtle to the current cell
+        if current != start:
+            maze.updatePosition(current, Contents.TRIED)
+
+        # check if we found the goal
+        if current.isGoal():
+            return True
+
+        # add unvisited neighbors to the stack
+        for neighbor in get_neighbors(maze, current):
+            if (neighbor.y, neighbor.x) not in visited:
+                visited.add((neighbor.y, neighbor.x))
+                stack.push(neighbor)
+
+    return False
+
 def main():
     maze = TurtleMaze('maze_1.txt')
 
