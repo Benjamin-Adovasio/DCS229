@@ -92,6 +92,7 @@ def dfs(maze: TurtleMaze) -> bool:
                 maze.updatePosition(stack.peek())
 
     return False
+
 def main():
     maze = TurtleMaze('maze_1.txt')
 
