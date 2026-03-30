@@ -95,12 +95,12 @@ def dfs(maze: TurtleMaze) -> bool:
 
 def main():
     maze = TurtleMaze('maze_1.txt')
+    maze.drawMaze()
 
-    start = maze.getStart()
-    print("Start cell:", start)
+    solved = dfs(maze)
+    print("Maze solved:", solved)
 
-    neighbors = get_neighbors(maze, start)
-    print("Neighbors of start:", neighbors)
+    maze.t.screen.mainloop()
 
 if __name__ == "__main__":
     main()
