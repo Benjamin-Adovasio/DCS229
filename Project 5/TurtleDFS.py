@@ -44,7 +44,7 @@ def get_neighbors(maze: TurtleMaze, cell: Cell) -> list[Cell]:
     return neighbors
 
 def dfs(maze: TurtleMaze) -> bool:
-    '''runs a non-recursive depth first search on the maze
+    '''runs a non-recursive depth first search on the maze with backtracking
     Returns:
         True if the goal is found, False otherwise
     '''
@@ -58,24 +58,40 @@ def dfs(maze: TurtleMaze) -> bool:
     maze.updatePosition(start)
 
     while not stack.is_empty():
-        current = stack.pop()
+        current = stack.peek()
 
-        # move turtle to the current cell
-        if current != start:
-            maze.updatePosition(current, Contents.TRIED)
-
-        # check if we found the goal
+        # if we reached the goal, we are done
         if current.isGoal():
             return True
 
-        # add unvisited neighbors to the stack
+        found_next = False
+
+        # look for an unvisited neighbor
         for neighbor in get_neighbors(maze, current):
             if (neighbor.y, neighbor.x) not in visited:
+                neighbor.setParent(current)
                 visited.add((neighbor.y, neighbor.x))
                 stack.push(neighbor)
 
-    return False
+                if not neighbor.isGoal():
+                    maze.updatePosition(neighbor, Contents.TRIED)
+                else:
+                    maze.updatePosition(neighbor)
 
+                found_next = True
+                break
+
+        # if no unvisited neighbor exists, backtrack
+        if not found_next:
+            dead_end = stack.pop()
+
+            if dead_end != start and not dead_end.isGoal():
+                maze.updatePosition(dead_end, Contents.DEAD_END)
+
+            if not stack.is_empty():
+                maze.updatePosition(stack.peek())
+
+    return False
 def main():
     maze = TurtleMaze('maze_1.txt')
 
