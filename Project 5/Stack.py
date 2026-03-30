@@ -60,7 +60,7 @@ class Stack[T]:
         '''
         if self.is_empty():
             raise EmptyError("Stack is empty")
-        return self._data.get_head()
+        return self._data.head.get_data()
 
     def is_empty(self) -> bool:
         ''' indicates whether the stack is empty
