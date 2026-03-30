@@ -101,6 +101,7 @@ def main():
     print("Maze solved:", solved)
 
     maze.t.screen.mainloop()
+    
 
 if __name__ == "__main__":
     main()
