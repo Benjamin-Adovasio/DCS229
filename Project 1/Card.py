@@ -20,3 +20,17 @@ class Card:
         return f"{self._value} of {self._suit}"
     
     #Returns a string representation of the card in the format "Value of Suit".
+
+if __name__ == "__main__":
+    card1 = Card("Hearts", "Ace")
+    card2 = Card("Spades", "10")
+
+    assert card1.get_suit() == "Hearts"
+    assert card1.get_value() == "Ace"
+    assert card2.get_suit() == "Spades"
+    assert card2.get_value() == "10"
+
+    assert repr(card1) == "Ace of Hearts"
+    assert repr(card2) == "10 of Spades"
+
+    print("All Card tests passed.")
