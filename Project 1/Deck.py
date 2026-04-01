@@ -34,6 +34,14 @@ class Deck:
     def number_of_cards(self) -> int:
         return len(self._cards) - self._next_card #Returns the number of remaining cards in the deck.
     
+
+    def __repr__(self) -> str:
+        """
+        Returns a string representation of the entire deck,
+        with one card per line.
+        """
+        return "\n".join(str(card) for card in self._cards)
+    
 if __name__ == "__main__":
     deck = Deck()
     deck.shuffle() #Calls the shuffle method to randomize the deck.
