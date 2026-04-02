@@ -1,3 +1,10 @@
+######################################
+# DCS 229 -- Unfair Solitaire 
+# This is the Card.py file, which defines the Card class used in the Solitaire game. The Card class represents a playing card with a suit and value, and includes methods to retrieve the suit and value, as well as a string representation of the card.
+# Date: 04/01/2026
+# Name: Benjamin Adovasio
+# Resources Used: Fran 
+##########################################
 class Card:
     """
     Represents a playing card with a suit and value.

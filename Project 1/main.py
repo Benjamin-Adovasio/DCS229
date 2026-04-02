@@ -1,6 +1,10 @@
-"""
-This is the main file that should be called to run the simulation.
-"""
+######################################
+# DCS 229 -- Unfair Solitaire 
+# This is the main.py file, which contains the main function to run the simulation.
+# Date: 04/01/2026
+# Name: Benjamin Adovasio
+# Resources Used: Fran 
+##########################################
 from Solitaire import Solitaire
 
 
