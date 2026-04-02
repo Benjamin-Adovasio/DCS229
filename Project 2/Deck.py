@@ -1,3 +1,11 @@
+######################################
+# DCS 229 -- Project 2
+# This is the Deck.py file, which defines the Deck class used in the Solitaire game. The Deck class represents a standard 52-card deck, and includes methods to shuffle the deck, deal cards, and check the number of remaining cards.
+# Date: 04/01/2026
+# Name: Benjamin Adovasio
+# Resources Used: Fran 
+##########################################
+
 import random
 from Card import Card
 """

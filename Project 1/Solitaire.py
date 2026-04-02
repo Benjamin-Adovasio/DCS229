@@ -1,19 +1,28 @@
-from Deck import Deck
-"""
-Defines the Solitaire game logic. Contains methods to play the game by dealing cards, removing cards based on game rules, and checking for a win condition.
+######################################
+# DCS 229 -- Unfair Solitaire
+# Defines the Solitaire game logic. Contains methods to play the game by dealing cards, removing cards based on game rules, and checking for a win condition.
+# Name: Benjamin Adovasio
+# Resources Used: Fran 
+##########################################
 
-Important Note: The prints in this file only run when this file is ececuted directly. This file should not be executed directly normally.
-"""
+from Deck import Deck
+
 
 class Solitaire:
     def __init__(self):
         self.deck = Deck()
         self.face_up = [] #List to hold face-up cards.
 
+    '''
+    deals cards until there are four face-up cards or the deck is empty.
+    '''
     def deal_until_four(self):
         while len(self.face_up) < 4 and self.deck.number_of_cards() > 0:
             self.face_up.append(self.deck.deal()) #Deals cards until there are four face-up cards.
 
+    '''
+    removes the last four cards if they are all the same suit. Returns True if cards were removed, False otherwise.
+    '''
     def remove_four_same_suit(self) -> bool:
         if len(self.face_up) < 4:
             return False #Not enough cards to remove four of the same suit.
@@ -27,6 +36,9 @@ class Solitaire:
         
         return False
     
+    '''
+    removes the inner two cards if the first and last card of the last four cards are the same suit. Returns True if cards were removed, False otherwise.
+    '''
     def remove_inner_two(self) -> bool:
         if len(self.face_up) < 4:
             return False #Not enough cards to remove inner two cards.
@@ -38,13 +50,20 @@ class Solitaire:
 
         return False
 
+
+    '''
+    Attempts to remove cards based on game rules.
+    '''
     def remove_all_possible(self):
         removed = True
         while removed and len(self.face_up) >= 4:
             removed = self.remove_four_same_suit()
             if not removed:
                 removed = self.remove_inner_two() # Attempts to remove cards based on game rules.
-
+                
+    '''
+    plays the game by shuffling the deck, dealing cards, removing cards based on game rules, and checking for a win condition.
+    '''
     def playGame(self) -> bool:
         self.deck.shuffle()
         self.face_up = []
