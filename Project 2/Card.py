@@ -32,8 +32,12 @@ class Card:
     def __add__(self, other) -> int:
             #Adding 2 cards together
         if isinstance(other, Card):
-            return self.value + other.value
+            return self._value + other._value
         elif isinstance(other, int):
             #allows adding a card to an int
-            return self.value + other
+            return self._value + other
+        return NotImplemented
+
+    def __radd__(self, other) -> int:
+        return self.__add__(other)
     #Added for project 2: Created an "__add__" meathod to allow adding Cards together.
