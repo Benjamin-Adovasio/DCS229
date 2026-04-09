@@ -26,12 +26,18 @@ class Deck:
                 self._cards.append(Card(suit, value)) #creates a standard 52-card deck
     
     def shuffle(self):
+        """
+        Shuffles the deck of cards using the Fisher-Yates algorithm. This algorithm iterates through the deck and swaps each card with a randomly selected card from the remaining unshuffled portion of the deck. After shuffling, it resets the next card index to 0.
+        """
         for i in range(len(self._cards)): #iterates through each card in the deck
             j = random.randrange(i, len(self._cards)) #selects a random index from i to the end of the deck
             self._cards[i], self._cards[j] = self._cards[j], self._cards[i] #Shuffles the deck
         self._next_card = 0    #Resets the next card index after shuffling.
     
     def deal(self):
+        """
+        Deals the next card from the deck. Returns None if there are no cards left to deal.
+        """
         if self._next_card >= len(self._cards): 
             return None #Returns None if there are no cards left to deal.
         card = self._cards[self._next_card]
@@ -40,6 +46,13 @@ class Deck:
     
     def number_of_cards(self) -> int:
         return len(self._cards) - self._next_card #Returns the number of remaining cards in the deck.
+    
+    def __repr__(self) -> str:
+        """
+        Returns a string representation of the entire deck,
+        with one card per line.
+        """
+        return "\n".join(str(card) for card in self._cards)
     
 if __name__ == "__main__":
     deck = Deck()
