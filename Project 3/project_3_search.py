@@ -14,10 +14,12 @@ from collections.abc import Sequence
 #I decided to put all 4 functions into one class to keep it organized 
 class Search:
 
-    """
-    This function generates the list of random integers.
-    """
     def generate_random_list(self, n: int) -> list[int]:
+        """
+        This function generates a list of n random integers between 0 and 1000, and returns the list.
+        Args: n: the number of random integers to generate
+        Returns: a list of n random integers between 0 and 1000
+        """
         array: list[int] = [] #array starts as blank
         for element in range(n): #will run n times
             array.append(random.randint(0, 1000)) #random integer between 0-1000
@@ -28,10 +30,12 @@ class Search:
 
         return array
     
-    """
-    This funciton preforms a search on the list for the target value, and prints the number of checks it took to find the target.
-    """
     def linear_search_print(self, arr: Sequence[int], target: int) -> int: 
+        """
+        This function performs a linear search for the target value in the given array. It prints the number of unsuccessful checks it took to find the target value, and returns the number of checks. If the target value is not found, it prints "Not found." and returns the total number of checks.
+        Args: arr: the array to search through, target: the value to search for
+        Returns: the number of checks it took to find the target value, or the total number of checks if the target value is not found
+        """
         checks = 0 #check count starts at 0
         for value in arr:
             if value == target:
@@ -42,10 +46,13 @@ class Search:
         print("Not found.") #Only gets printed if the code doesnt return earlier
         return checks
     
-    """
-    This function is the same as the previous one, but instead of printing the number of checks, it returns the number of checks. 
-    """
+
     def linear_search_count(self, arr: Sequence[int], target: int) -> int:
+        """
+        This function performs a linear search for the target value in the given array. It returns the number of checks it took to find the target value, or the total number of checks if the target value is not found.
+        Args: arr: the array to search through, target: the value to search for
+        Returns: the number of checks it took to find the target value, or the total number of checks if the target value is not found
+        """
         checks = 0
         for value in arr:
             checks += 1
@@ -53,9 +60,7 @@ class Search:
                 return checks 
         return checks
     
-    """
-    This function uses recursive searching.
-    """
+
     def binary_search_recursive(
         self,
         arr: Sequence[int],
@@ -63,6 +68,11 @@ class Search:
         low: int = 0,
         high: int | None = None,
     ) -> int:
+        """
+        This function performs a binary search for the target value in the given sorted array. It returns the index of the target value if found, or -1 if not found.
+        Args: arr: the sorted array to search through, target: the value to search for
+        Returns: the index of the target value if found, or -1 if not found
+        """
         if high is None:
             high = len(arr) - 1
 
@@ -79,6 +89,11 @@ class Search:
             return self.binary_search_recursive(arr, target, low, mid - 1)
         
 def main(n: int = 1000) -> None:
+    """
+    This function is the main function that runs the search tests. It generates random lists of integers, performs linear and binary searches, and prints the results.
+    Args: n: the number of random integers to generate for the tests (default is 1000)
+    Returns: None
+    """
     search = Search() #search object to call Search() class
 
     """
@@ -108,8 +123,6 @@ def main(n: int = 1000) -> None:
     """
     Part 4: Tests
 
-    At what number of queries does Sorting + Binary Search start to show an advantage over Linear Search?:
-    Sorting + binary search shows an advantage at around 500 queries
     """
     arr = search.generate_random_list(n) #generate the list of n random integers
 
@@ -121,19 +134,19 @@ def main(n: int = 1000) -> None:
             queries.append(random.choice(arr))
 
         # Linear timing
-        start = time.perf_counter()
+        start = time.perf_counter() #start time is recorded before any of the queries are searched for using linear search
         for q in queries:
-            search.linear_search_count(arr, q)
-        end = time.perf_counter()
+            search.linear_search_count(arr, q) #search for each query using linear search on the unsorted array
+        end = time.perf_counter() #end time is recorded after all queries have been searched for using linear search
         linear_time = end - start
 
         # Sorting + Binary timing
-        start = time.perf_counter()
-        sorted_arr = sorted(arr)
+        start = time.perf_counter() #start time is recorded before the array is sorted and any of the queries are searched for using binary search
+        sorted_arr = sorted(arr) #the array is sorted before the queries are searched for using binary search, but the time it takes to sort the array is included in the total time for this part
         for q in queries:
-            search.binary_search_recursive(sorted_arr, q)
+            search.binary_search_recursive(sorted_arr, q) #search for each query using binary search on the sorted array
         end = time.perf_counter()
-        binary_time = end - start
+        binary_time = end - start 
 
         print("\nQueries:", query_count)
         print("Linear time:", linear_time)
