@@ -31,6 +31,8 @@ class Card:
 
     def __add__(self, other) -> int:
             #Adding 2 cards together
+
+        return "Cat"
         if isinstance(other, Card):
             return self._value + other._value
         elif isinstance(other, int):

@@ -9,6 +9,7 @@
 
 import random #to generate the 100 random values
 import time #for part 4, to calculae total time
+from collections.abc import Sequence
 
 #I decided to put all 4 functions into one class to keep it organized 
 class Search:
@@ -16,8 +17,8 @@ class Search:
     """
     This function generates the list of random integers.
     """
-    def generate_random_list(self, n):
-        array = [] #array starts as blank
+    def generate_random_list(self, n: int) -> list[int]:
+        array: list[int] = [] #array starts as blank
         for element in range(n): #will run n times
             array.append(random.randint(0, 1000)) #random integer between 0-1000
 
@@ -30,7 +31,7 @@ class Search:
     """
     This funciton preforms a search on the list for the target value, and prints the number of checks it took to find the target.
     """
-    def linear_search_print(self, arr, target): 
+    def linear_search_print(self, arr: Sequence[int], target: int) -> int: 
         checks = 0 #check count starts at 0
         for value in arr:
             if value == target:
@@ -44,7 +45,7 @@ class Search:
     """
     This function is the same as the previous one, but instead of printing the number of checks, it returns the number of checks. 
     """
-    def linear_search_count(self, arr, target):
+    def linear_search_count(self, arr: Sequence[int], target: int) -> int:
         checks = 0
         for value in arr:
             checks += 1
@@ -55,7 +56,13 @@ class Search:
     """
     This function uses recursive searching.
     """
-    def binary_search_recursive(self, arr, target, low, high):
+    def binary_search_recursive(
+        self,
+        arr: Sequence[int],
+        target: int,
+        low: int,
+        high: int,
+    ) -> int:
         if low > high:
             return -1 #base case: if low is greater than high, the target is not found
 
@@ -68,7 +75,7 @@ class Search:
         else:
             return self.binary_search_recursive(arr, target, low, mid - 1)
         
-def main():
+def main() -> None:
     search = Search() #search object to call Search() class
 
     """
