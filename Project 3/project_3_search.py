@@ -60,9 +60,12 @@ class Search:
         self,
         arr: Sequence[int],
         target: int,
-        low: int,
-        high: int,
+        low: int = 0,
+        high: int | None = None,
     ) -> int:
+        if high is None:
+            high = len(arr) - 1
+
         if low > high:
             return -1 #base case: if low is greater than high, the target is not found
 
@@ -75,7 +78,7 @@ class Search:
         else:
             return self.binary_search_recursive(arr, target, low, mid - 1)
         
-def main() -> None:
+def main(n: int = 1000) -> None:
     search = Search() #search object to call Search() class
 
     """
@@ -99,7 +102,7 @@ def main() -> None:
     Part 3: Uses the recursive search
     """
     arr = sorted(search.generate_random_list(100)) #generate the list of 100 random integers and sort it for binary search
-    index = search.binary_search_recursive(arr, 42, 0, len(arr) - 1) #search for the value 42 using binary search and get the index of 42
+    index = search.binary_search_recursive(arr, 42) #search for the value 42 using binary search and get the index of 42
     print("Index of 42 in sorted array:", index) #print the index of 42 in the sorted array
 
     """
@@ -108,7 +111,6 @@ def main() -> None:
     At what number of queries does Sorting + Binary Search start to show an advantage over Linear Search?:
     Sorting + binary search shows an advantage at around 500 queries
     """
-    n = 1000
     arr = search.generate_random_list(n) #generate the list of n random integers
 
     for multiplier in [0.5, 1, 2, 4]: #I used a "multiplier" to avoid rewriting the code for each query
@@ -129,7 +131,7 @@ def main() -> None:
         start = time.perf_counter()
         sorted_arr = sorted(arr)
         for q in queries:
-            search.binary_search_recursive(sorted_arr, q, 0, len(sorted_arr) - 1)
+            search.binary_search_recursive(sorted_arr, q)
         end = time.perf_counter()
         binary_time = end - start
 
